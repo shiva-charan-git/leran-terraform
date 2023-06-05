@@ -5,7 +5,7 @@ data "aws_ami" "ami" {
 }
 
 
-resource "aws_instance" "frontend" {
+/*resource "aws_instance" "frontend" {
    count = length(var.instance)
    ami = "ami-03265a0778a880afb"
    instance_type = "t3.micro"
@@ -13,9 +13,38 @@ resource "aws_instance" "frontend" {
    tags = {
      Name = var.instance[count.index]
    }
-}
+} 
+
 
 variable "instance" {
     default = [ "cart","catalogue","user","payment","shipping"]
 }
   
+
+*/
+
+
+resource "aws_instance" "frontend" {
+   for_each = var.instance
+   ami = "ami-03265a0778a880afb"
+   instance_type = each.key["type"]
+   vpc_security_group_ids = ["sg-0827c01ee4ba4d8aa"]
+   tags = {
+     Name = each.value["name"]
+   }
+}
+
+variable "instance" {
+  default = {
+    catalogue ={
+      name = "catalogue"
+      type = "t3.micro"
+    }
+     user ={
+      name = "user"
+      type = "t3.micro"
+    }
+  }
+}
+
+
