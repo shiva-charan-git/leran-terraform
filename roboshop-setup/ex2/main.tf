@@ -24,7 +24,7 @@ variable "instance" {
 */
 
 
-resource "aws_instance" "frontend" {
+resource "aws_instance" "instances" {
    for_each = var.instance
    ami = "ami-03265a0778a880afb"
    instance_type = each.value["type"]
@@ -34,7 +34,7 @@ resource "aws_instance" "frontend" {
    }
 }
 
-variable "instance" {
+variable "instances" {
   default = {
     catalogue ={
       name = "catalogue"
@@ -47,4 +47,8 @@ variable "instance" {
   }
 }
 
+output "ec2" {
+  value = aws_instance.instance.instances
+  
+}
 
