@@ -23,14 +23,14 @@ variable "sample5" {
   default = "Hello"
 }
 
-
 variable "sample6" {
-default = {
-  "Hello",
-  1000,
-  true,
-  "World"
-}
+  default = [
+    "Hello",
+    1000,
+    true,
+    "world"
+  ]
+  
 }
 
 variable "sample7" {
