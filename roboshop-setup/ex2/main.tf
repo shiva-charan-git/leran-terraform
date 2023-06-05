@@ -25,7 +25,7 @@ variable "instance" {
 
 
 resource "aws_instance" "instances" {
-   for_each = var.instance
+   for_each = var.instances
    ami = "ami-03265a0778a880afb"
    instance_type = each.value["type"]
    vpc_security_group_ids = ["sg-0827c01ee4ba4d8aa"]
