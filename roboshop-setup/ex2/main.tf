@@ -53,3 +53,8 @@ output "ec2" {
   
 }
 
+output "ec3" {
+  value = [for k, v in aws_instance.aws_instance.instances : v.public_ip]
+  
+}
+
