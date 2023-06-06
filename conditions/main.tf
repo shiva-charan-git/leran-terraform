@@ -8,7 +8,7 @@ variable "instance_type" {}
 
 variable "create_instances" {}
 
-resource "aws_instance" "test" {
+resource "aws_instance" "test1" {
     count = var.create_instances == "true" ? 1 : 0
    ami = "ami-03265a0778a880afb"
    instance_type = var.instance_type == "" ? "t3.micro" : var.instance_type
